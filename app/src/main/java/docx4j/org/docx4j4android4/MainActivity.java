@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
             w.getMainDocumentPart().addParagraphOfText("hello from android");
 
             // Test marshalling works
-            String XML = XmlUtils.marshaltoString(w.getMainDocumentPart().getXML());
+            String XML = XmlUtils.marshaltoString(w.getMainDocumentPart().getJaxbElement());
+            // or simply w.getMainDocumentPart().getXML();
 
             System.out.println(XML);
 
