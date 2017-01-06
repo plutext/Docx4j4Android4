@@ -11,6 +11,13 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    sourceSets {
+        main {
+            resources.includes = [ 'src/main/assets/docx4j.properties' ]
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
