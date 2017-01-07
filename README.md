@@ -14,3 +14,5 @@ A pull request which does something on the actual device would be gratefully acc
 WARNING:
 
 Note https://github.com/plutext/Docx4j4Android4/issues/1 ; this POC uses --core-library flag
+
+For questions/comments, please post at http://www.docx4java.org/forums/android-f19/ XOR StackOverflow.  Not both!
