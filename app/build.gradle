@@ -5,8 +5,10 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "docx4j.org.docx4j4android4"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 25
+        // if you need to support minSdkVersion 15, see https://developer.android.com/studio/build/multidex.html
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -19,6 +21,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            // app-debug.apk is 6443 kb with minifyEnabled, 11025 kb otherwise
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -26,7 +33,8 @@ android {
     }
 
     dexOptions {
-        preDexLibraries = false
+        // Comment the following in order to see actual errors, not unhelpful "too many errors"!
+//        preDexLibraries = false
         additionalParameters=['--core-library']
     }
 
@@ -52,6 +60,10 @@ android {
 
 }
 
+//configurations {
+//    compile.exclude group: "commons-logging", module: "commons-logging"
+//}
+
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -60,77 +72,16 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
     testCompile 'junit:junit:4.12'
-//    compile "org.antlr:antlr:2.7.7"
-//    compile files('libs/antlr-2.7.7.jar')
-    compile "org.antlr:antlr-runtime:3.5.2"
-//    compile files('libs/antlr-runtime-3.5.2.jar')
-    compile "org.apache.avalon.framework:avalon-framework-api:4.3.1"
-//    compile files('libs/avalon-framework-api-4.3.1.jar')
-    compile "org.apache.avalon.framework:avalon-framework-impl:4.3.1"
-//    compile files('libs/avalon-framework-impl-4.3.1.jar')
-
-    compile files('libs/awt-bastardised-17v8.jar')
-
-    compile "commons-codec:commons-codec:1.10"
-//    compile files('libs/commons-codec-1.10.jar')
-    compile "commons-io:commons-io:2.4"
-//    compile files('libs/commons-io-2.4.jar')
-    compile "org.apache.commons:commons-lang3:3.4"
-//    compile files('libs/commons-lang3-3.4.jar')
-
-    //compile files('libs/commons-logging-1.1.3.jar')
-
-    compile "com.google.guava:guava:19.0"
-//    compile files('libs/guava-19.0.jar')
-    compile "org.apache.httpcomponents:httpclient:4.5.2"
-//    compile files('libs/httpclient-4.5.2.jar')
-    compile "org.apache.httpcomponents:httpcore:4.4.4"
-//    compile files('libs/httpcore-4.4.4.jar')
-    compile "com.fasterxml.jackson.core:jackson-annotations:2.7.0"
-//    compile files('libs/jackson-annotations-2.7.0.jar')
-    compile "com.fasterxml.jackson.core:jackson-core:2.7.3"
-//    compile files('libs/jackson-core-2.7.3.jar')
-    compile "com.fasterxml.jackson.core:jackson-databind:2.7.3"
-//    compile files('libs/jackson-databind-2.7.3.jar')
 
     compile "javax.xml.bind:jaxb-api:2.2.12"
-//    compile files('libs/jaxb-api.jar')
 
-    compile "org.plutext:jaxb-svg11:1.0.2"
-//    compile files('libs/jaxb-svg11-1.0.2.jar')
-    compile "com.thedeanda:lorem:2.0"
-//    compile files('libs/lorem-2.0.jar')
-    compile "net.engio:mbassador:1.2.4.2"
-//    compile files('libs/mbassador-1.2.4.2.jar')
-    compile "xalan:serializer:2.7.2"
-//    compile files('libs/serializer-2.7.2.jar')
+    compile files('libs/awt-bastardised-17v8.jar')
     compile files('libs/slf4j-android-1.6.1-RC1.jar')
-//    compile files('libs/slf4j-api-1.7.21.jar')
-    compile "org.slf4j:slf4j-api:1.7.21"
-//    compile "org.slf4j:jcl-over-slf4j:1.7.21"
-    compile "org.antlr:stringtemplate:3.2.1"
-//    compile files('libs/stringtemplate-3.2.1.jar')
-    compile "net.arnx:wmf2svg:0.9.8"
-//    compile files('libs/wmf2svg-0.9.8.jar')
-    compile "xalan:xalan:2.7.2"
-//    compile files('libs/xalan-2.7.2.jar')
-    compile "org.apache.xmlgraphics:xmlgraphics-commons:2.1"
-//    compile files('libs/xmlgraphics-commons-2.1.jar')
-
-    compile "javax.xml.stream:stax-api:1.0-2"
-//    compile files('libs/stax-api-1.0-2.jar')
-
     compile files('libs/activation.jar')
     compile files('libs/additionnal.jar')
-
-    compile "com.fasterxml:aalto-xml:1.0.0"
-//    compile files('libs/aalto-xml-1.0.0.jar')
-    compile "org.codehaus.woodstox:stax2-api:4.0.0"
-//    compile files('libs/stax2-api-4.0.0.jar')
-
     compile files('libs/jaxb-core-2.3.0-SNAPSHOT-ANDROID.jar')
     compile files('libs/jaxb-runtime-2.3.0-SNAPSHOT-ANDROID.jar')
-    compile files('libs/docx4j-3.3.3-SNAPSHOT.jar')
     compile files('libs/istack-commons-runtime-3.0.4-SNAPSHOT.jar')
-
+    compile files('libs/docx4j-3.3.5-SNAPSHOT2-shaded.jar')
+    // with org.slf4j removed
 }
