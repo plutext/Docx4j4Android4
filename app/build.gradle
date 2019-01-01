@@ -73,11 +73,9 @@ dependencies {
     compile 'com.android.support:design:26.+'
     testCompile 'junit:junit:4.12'
     compile 'javax.xml.bind:jaxb-api:2.2.12'
-
     compile 'javax.xml.stream:stax-api:1.0-2'
     compile 'com.fasterxml:aalto-xml:1.0.0'
     //compile 'org.codehaus.woodstox:stax2-api:4.0.0'
-
     compile files('libs/awt-bastardised-17v8.jar')
     compile files('libs/slf4j-android-1.6.1-RC1.jar')
     compile files('libs/activation.jar')
@@ -85,6 +83,6 @@ dependencies {
     compile files('libs/jaxb-core-2.3.0-SNAPSHOT-ANDROID.jar')
     compile files('libs/jaxb-runtime-2.3.0-SNAPSHOT-ANDROID.jar')
     compile files('libs/istack-commons-runtime-3.0.4-SNAPSHOT.jar')
-    compile files('libs/docx4j-3.3.5-SNAPSHOT2-shaded.jar')
     // with org.slf4j removed
+    compile files('libs/docx4j-6.1.1-SNAPSHOT-shaded.jar')
 }
